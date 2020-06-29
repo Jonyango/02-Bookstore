@@ -6,7 +6,7 @@ class Author {
   Author({this.name, this.bookCounts, this.authorPics});
 }
 
-List<Author> authors = [
+List<Author> authorsList = [
   Author(
       name: 'Philip K. Dick',
       bookCounts: 25,
@@ -18,5 +18,5 @@ List<Author> authors = [
   Author(
       name: 'Arthur C. Clarke',
       bookCounts: 25,
-      authorPics: 'assets/images/arthur.jpg'),
+      authorPics: 'assets/images/arthur.png'),
 ];
