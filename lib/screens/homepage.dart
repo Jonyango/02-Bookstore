@@ -1,5 +1,7 @@
 import 'package:bookstore/components/authors_card.dart';
+import 'package:bookstore/components/book_slide.dart';
 import 'package:bookstore/components/custom_app_bar.dart';
+import 'package:bookstore/screens/detailpage.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/models/book.dart';
 import 'package:bookstore/models/author.dart';
@@ -25,13 +27,21 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {},
         ),
         actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(4.0),
-            child: CircleAvatar(
-              radius: 25.0,
-              backgroundImage: AssetImage('assets/images/dp.jpg'),
+          Container(
+            margin: EdgeInsets.all(5.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 8.0,
+                      spreadRadius: 5.0,
+                      color: Colors.grey[400])
+                ]),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+              child: Image.asset('assets/images/dp.jpg', fit: BoxFit.contain),
             ),
-          )
+          ),
         ],
       ),
       body: Column(
@@ -48,52 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 scrollDirection: Axis.horizontal,
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (_, int index) {
-                  return GestureDetector(
-                    onTap: () => print("hurray"),
-                    child: Container(
-                      color: Colors.transparent,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20.0, right: 8.0),
-                              child: Container(
-                                
-                                child: Hero(
-                                  tag: 'bookImage',
-                                  child: Image.asset(bookLists[index].image,
-                                      fit: BoxFit.fill),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 10.0),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 8.0, left: 20.0),
-                            child: Text(
-                              bookLists[index].title,
-                              style: TextStyle(
-                                  fontSize: 14.0, fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 8.0, left: 20.0),
-                            child: Text(bookLists[index].author,
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xffcccccc))),
-                          ),
-                        ],
-                      ),
-                    ),
+                  return BookSlide(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return DetailPage();
+                      }));
+                    },
+                    title: bookLists[index].title,
+                    image: bookLists[index].image,
+                    author: bookLists[index].author,
                   );
                 },
               ),
@@ -137,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ListView.builder(
                         itemCount: authorsList.length,
                         scrollDirection: Axis.horizontal,
+                        physics: BouncingScrollPhysics(),
                         itemBuilder: (_, int index) {
                           return AuthorsCard(
                             authorName: authorsList[index].name,
