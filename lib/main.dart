@@ -28,6 +28,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int currentBottomIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).primaryColor,
             borderRadius:
                 BorderRadius.only(bottomRight: Radius.circular(40.0))),
         height: 150,
@@ -77,8 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   tabs: myTabs,
                   indicatorColor: Theme.of(context).accentColor,
                   indicatorWeight: 3.0,
+                  indicatorPadding: EdgeInsets.symmetric(horizontal: 30.0),
                   unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
                   labelColor: Theme.of(context).accentColor,
+                  labelStyle: TextStyle(
+                      letterSpacing: 1.5, fontWeight: FontWeight.bold),
                   unselectedLabelColor: Colors.grey,
                 ),
               ),
