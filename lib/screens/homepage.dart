@@ -60,13 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemBuilder: (_, int index) {
                   return BookSlide(
                     onPressed: () {
+                      Book book = bookLists[index];
                       Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return DetailPage();
+                        return DetailPage(book: book,);
                       }));
                     },
                     title: bookLists[index].title,
                     image: bookLists[index].image,
-                    author: bookLists[index].author,
+                    author: bookLists[index].author.name,
                   );
                 },
               ),
