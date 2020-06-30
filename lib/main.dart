@@ -1,24 +1,22 @@
+import 'package:bookstore/screens/home.dart';
+import 'package:bookstore/utils/store.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Hi"),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return ChangeNotifierProvider(
+      create: (_) => Store(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: "/",
+        routes: {
+          "/": (_) => HomePage(),
+        },
+      ),
     );
   }
 }
