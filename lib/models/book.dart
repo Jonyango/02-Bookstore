@@ -2,12 +2,13 @@ import 'author.dart';
 import 'dart:math';
 
 class Book {
-  Book({this.title, this.image, this.author, this.description});
+  Book({this.title, this.image, this.author, this.description, this.rating});
 
   String title;
   String image;
   Author author;
   String description;
+  double rating;
 }
 
 List<Book> bookLists = [

@@ -65,10 +65,18 @@ class _DetailPageState extends State<DetailPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(bookTitle),
-                    SizedBox(height: 5.0),
-                    Text(authorName),
+                    Text(
+                      bookTitle,
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
                     SizedBox(height: 10.0),
+                    Text(
+                      authorName,
+                      style: TextStyle(
+                          fontSize: 14.0, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 20.0),
                     Row(
                       children: <Widget>[
                         Icon(Icons.star, size: 16.0, color: Color(0xfff75900)),
@@ -83,12 +91,17 @@ class _DetailPageState extends State<DetailPage> {
                         Text('4.14'),
                       ],
                     ),
-                    SizedBox(height: 10.0),
-                    Text('Lorem Ipsum dolor jfkdf jieofsdkfjoajf djfafjjajf'
-                        'difjpaf ajfkjap fjappjsdifa jjdkfsjlfkdjslfsdk'
-                        'f jdsklfjdsfkslfjsljfakdjfafjsdjfsalfjsd;akfj'
-                        'dkfjlsfja jfklajskjadfjdjfjfwofkdjfdsjfafjdslfjeie'
-                        'djfsljalkdjfsljfjeif jfisdlfjadfjadf'),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'Lorem Ipsum dolor jfkdf jieofsdkfjoajf djfafjjajf'
+                      'difjpaf ajfkjap fjappjsdifa jjdkfsjlfkdjslfsdk'
+                      'f jdsklfjdsfkslfjsljfakdjfafjsdjfsalfjsd;akfj'
+                      'dkfjlsfja jfklajskjadfjdjfjfwofkdjfdsjfafjdslfjeie'
+                      'djfsljalkdjfsljfjeif jfisdlfjadfjadf',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
                   ],
                 ),
               ),
