@@ -13,18 +13,35 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  String bookImagePath;
-  String authorImagePath;
-  String bookTitle;
-  String authorName;
+  double rating;
+
+  List<IconData> _buildIcons(double r) {
+    List<IconData> iconList = [];
+
+    int leftIconToBuild = 5 - r.toInt();
+
+    // build the main stars
+    for (int i = 0; i < r.toInt(); i++) {
+      iconList.add(Icons.star);
+    }
+
+    // when done with main stars, build for half star
+    if (r > r.toInt()) {
+      iconList.add(Icons.star_half);
+      leftIconToBuild--;
+    }
+
+    for (int j = 0; j < leftIconToBuild; j++) {
+      iconList.add(Icons.star_border);
+    }
+
+    return iconList;
+  }
 
   @override
   void initState() {
     super.initState();
-    bookImagePath = widget.book.image;
-    authorImagePath = widget.book.author.authorPics;
-    bookTitle = widget.book.title;
-    authorName = widget.book.author.name;
+    rating = widget.book.rating;
   }
 
   @override
@@ -37,7 +54,7 @@ class _DetailPageState extends State<DetailPage> {
             width: MediaQuery.of(context).size.width,
             child: Hero(
               tag: widget.heroTag,
-              child: Image.asset(bookImagePath, fit: BoxFit.cover),
+              child: Image.asset(widget.book.image, fit: BoxFit.cover),
             ),
           ),
           Positioned(
@@ -68,38 +85,35 @@ class _DetailPageState extends State<DetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      bookTitle,
+                      widget.book.title,
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      authorName,
+                      widget.book.author.name,
                       style: TextStyle(
                           fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 20.0),
                     Row(
                       children: <Widget>[
-                        Icon(Icons.star, size: 16.0, color: Color(0xfff75900)),
-                        Icon(Icons.star, size: 16.0, color: Color(0xfff75900)),
-                        Icon(Icons.star, size: 16.0, color: Color(0xfff75900)),
-                        Icon(Icons.star, size: 16.0, color: Color(0xfff75900)),
-                        Icon(Icons.star_border,
-                            size: 16.0, color: Color(0xfff75900)),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: _buildIcons(rating)
+                              .map((e) =>
+                                  Icon(e, size: 16.0, color: Color(0xfff75900)))
+                              .toList(),
+                        ),
                         SizedBox(
                           width: 5.0,
                         ),
-                        Text('4.14'),
+                        Text(rating.toString()),
                       ],
                     ),
                     SizedBox(height: 20.0),
                     Text(
-                      'Lorem Ipsum dolor jfkdf jieofsdkfjoajf djfafjjajf'
-                      'difjpaf ajfkjap fjappjsdifa jjdkfsjlfkdjslfsdk'
-                      'f jdsklfjdsfkslfjsljfakdjfafjsdjfsalfjsd;akfj'
-                      'dkfjlsfja jfklajskjadfjdjfjfwofkdjfdsjfafjdslfjeie'
-                      'djfsljalkdjfsljfjeif jfisdlfjadfjadf',
+                      widget.book.description,
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
@@ -124,7 +138,8 @@ class _DetailPageState extends State<DetailPage> {
                   ]),
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                child: Image.asset(authorImagePath, fit: BoxFit.cover),
+                child: Image.asset(widget.book.author.authorPics,
+                    fit: BoxFit.cover),
               ),
             ),
           ),
