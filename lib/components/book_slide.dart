@@ -5,11 +5,13 @@ class BookSlide extends StatelessWidget {
       {@required this.title,
       @required this.author,
       @required this.image,
+      @required this.heroTag,
       this.onPressed});
 
   final String title;
   final String author;
   final String image;
+  final String heroTag;
   final Function onPressed;
 
   @override
@@ -37,7 +39,9 @@ class BookSlide extends StatelessWidget {
                           offset: Offset(10.0, 15.0))
                     ],
                   ),
-                  child: Image.asset(image, fit: BoxFit.fill),
+                  child: Hero(
+                      tag: heroTag,
+                      child: Image.asset(image, fit: BoxFit.fill)),
                 ),
               ),
             ),

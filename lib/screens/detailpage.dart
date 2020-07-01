@@ -3,9 +3,10 @@ import 'package:bookstore/models/book.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({@required this.book});
+  DetailPage({@required this.book, @required this.heroTag});
 
   final Book book;
+  final String heroTag;
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -35,11 +36,12 @@ class _DetailPageState extends State<DetailPage> {
           Container(
             width: MediaQuery.of(context).size.width,
             child: Hero(
-                tag: "hero_book",
-                child: Image.asset(bookImagePath, fit: BoxFit.cover)),
+              tag: widget.heroTag,
+              child: Image.asset(bookImagePath, fit: BoxFit.cover),
+            ),
           ),
           Positioned(
-            top: 15.0,
+            top: 20.0,
             child: IconButton(
               icon: Icon(
                 Icons.arrow_back,

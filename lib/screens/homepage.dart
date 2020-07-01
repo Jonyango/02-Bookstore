@@ -59,10 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (_, int index) {
                   return BookSlide(
+                    heroTag: "bookImage$index",
                     onPressed: () {
                       Book book = bookLists[index];
                       Navigator.push(context, MaterialPageRoute(builder: (_) {
-                        return DetailPage(book: book,);
+                        return DetailPage(
+                          book: book,
+                          heroTag: "bookImage$index",
+                        );
                       }));
                     },
                     title: bookLists[index].title,
