@@ -1,3 +1,4 @@
+import 'package:bookstore/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -16,9 +17,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Hi"),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: HomeScreen()
     );
   }
 }
